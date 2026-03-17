@@ -1,0 +1,64 @@
+services:
+  - type: web
+    name: opensign-api
+    env: node
+    plan: starter
+    buildCommand: npm install --legacy-peer-deps && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        scope: shared
+      - key: PORT
+        value: 10000
+      - key: PARSE_SERVER_URL
+        value: https://opensign-api.onrender.com
+      - key: PARSE_PUBLIC_SERVER_URL
+        value: https://opensign-api.onrender.com
+      - key: APP_ID
+        scope: shared
+      - key: MASTER_KEY
+        scope: shared
+      - key: PARSE_MOUNT
+        value: /parse
+      - key: ADMIN_PANEL_MASTER_KEY
+        scope: shared
+      - key: JWT_SECRET
+        scope: shared
+      - key: SENDGRID_API_KEY
+        scope: shared
+      - key: VOXBRIDGE_API_URL
+        value: https://api.voxbridge.app
+      - key: VOXBRIDGE_API_KEY
+        scope: shared
+
+  - type: web
+    name: opensign-dashboard
+    env: node
+    plan: starter
+    buildCommand: npm install --legacy-peer-deps && npm run build
+    startCommand: npm run preview -- --host
+    envVars:
+      - key: VITE_PARSE_SERVER_URL
+        value: https://opensign-api.onrender.com
+      - key: VITE_APP_NAME
+        value: OpenSign
+      - key: VITE_API_URL
+        value: https://opensign-api.onrender.com
+
+databases:
+  - name: opensign-db
+    databaseName: opensign
+    user: postgres
+    plan: starter
+    postgresMajorVersion: "15"
+    preDeployCommand: npm run migrate
+
+envVarGroups:
+  - name: shared
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: opensign-db.onrender.com
+          property: connectionString
