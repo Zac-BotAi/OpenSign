@@ -9,7 +9,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        scope: shared
+        value: ""
       - key: PORT
         value: 10000
       - key: PARSE_SERVER_URL
@@ -17,27 +17,27 @@ services:
       - key: PARSE_PUBLIC_SERVER_URL
         value: https://opensign-api.onrender.com
       - key: APP_ID
-        scope: shared
+        value: opensign
       - key: MASTER_KEY
-        scope: shared
+        value: ""
       - key: PARSE_MOUNT
         value: /parse
       - key: ADMIN_PANEL_MASTER_KEY
-        scope: shared
+        value: ""
       - key: JWT_SECRET
-        scope: shared
+        value: ""
       - key: SMTP_HOST
-        scope: shared
+        value: ""
       - key: SMTP_PORT
-        scope: shared
+        value: "587"
       - key: SMTP_USER
-        scope: shared
+        value: ""
       - key: SMTP_PASSWORD
-        scope: shared
+        value: ""
       - key: VOXBRIDGE_API_URL
-        value: https://opensign-voxbridge.onrender.com
+        value: https://epic-sharing-maggot.ngrok-free.app
       - key: VOXBRIDGE_API_KEY
-        scope: shared
+        value: ""
 
   - type: web
     name: opensign-dashboard
@@ -57,27 +57,3 @@ databases:
   - name: opensign-db
     databaseName: opensign
     plan: starter
-    
-envVarGroups:
-  - name: shared
-    envVars:
-      - key: DATABASE_URL
-        value: ""
-      - key: APP_ID
-        value: ""
-      - key: MASTER_KEY
-        value: ""
-      - key: ADMIN_PANEL_MASTER_KEY
-        value: ""
-      - key: JWT_SECRET
-        value: ""
-      - key: SMTP_HOST
-        value: ""
-      - key: SMTP_PORT
-        value: "587"
-      - key: SMTP_USER
-        value: ""
-      - key: SMTP_PASSWORD
-        value: ""
-      - key: VOXBRIDGE_API_KEY
-        value: ""  # Generate from VoxBridge API Keys dashboard
