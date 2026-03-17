@@ -3,7 +3,7 @@ services:
     name: opensign-api
     env: node
     plan: free
-    buildCommand: npm install --legacy-peer-deps && npm run build
+    buildCommand: HUSKY=0 npm install --legacy-peer-deps && npm run build
     startCommand: npm run start
     envVars:
       - key: NODE_ENV
@@ -43,7 +43,7 @@ services:
     name: opensign-dashboard
     env: node
     plan: free
-    buildCommand: npm install --legacy-peer-deps && npm run build
+    buildCommand: HUSKY=0 npm install --legacy-peer-deps
     startCommand: npm run preview -- --host
     envVars:
       - key: VITE_PARSE_SERVER_URL
