@@ -57,8 +57,7 @@ databases:
   - name: opensign-db
     databaseName: opensign
     plan: starter
-    postgresVersion: "15"
-
+    
 envVarGroups:
   - name: shared
     envVars:
