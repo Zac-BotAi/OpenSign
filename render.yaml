@@ -2,7 +2,7 @@ services:
   - type: web
     name: opensign-api
     env: node
-    plan: starter
+    plan: free
     buildCommand: npm install --legacy-peer-deps && npm run build
     startCommand: npm run start
     envVars:
@@ -42,7 +42,7 @@ services:
   - type: web
     name: opensign-dashboard
     env: node
-    plan: starter
+    plan: free
     buildCommand: npm install --legacy-peer-deps && npm run build
     startCommand: npm run preview -- --host
     envVars:
@@ -56,4 +56,4 @@ services:
 databases:
   - name: opensign-db
     databaseName: opensign
-    plan: starter
+    plan: free
