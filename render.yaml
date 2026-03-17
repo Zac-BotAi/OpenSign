@@ -26,10 +26,16 @@ services:
         scope: shared
       - key: JWT_SECRET
         scope: shared
-      - key: SENDGRID_API_KEY
+      - key: SMTP_HOST
+        scope: shared
+      - key: SMTP_PORT
+        scope: shared
+      - key: SMTP_USER
+        scope: shared
+      - key: SMTP_PASSWORD
         scope: shared
       - key: VOXBRIDGE_API_URL
-        value: https://api.voxbridge.app
+        value: https://opensign-voxbridge.onrender.com
       - key: VOXBRIDGE_API_KEY
         scope: shared
 
@@ -50,14 +56,29 @@ services:
 databases:
   - name: opensign-db
     databaseName: opensign
-    user: postgres
     plan: starter
-    postgresMajorVersion: "15"
+    postgresVersion: "15"
 
 envVarGroups:
   - name: shared
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: opensign-db.onrender.com
-          property: connectionString
+        value: ""
+      - key: APP_ID
+        value: ""
+      - key: MASTER_KEY
+        value: ""
+      - key: ADMIN_PANEL_MASTER_KEY
+        value: ""
+      - key: JWT_SECRET
+        value: ""
+      - key: SMTP_HOST
+        value: ""
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        value: ""
+      - key: SMTP_PASSWORD
+        value: ""
+      - key: VOXBRIDGE_API_KEY
+        value: ""  # Generate from VoxBridge API Keys dashboard
